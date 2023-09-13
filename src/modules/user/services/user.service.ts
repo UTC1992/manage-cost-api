@@ -20,4 +20,8 @@ export class UserService {
 
     return this.userModel.create(userObject);
   }
+
+  async get() {
+    return this.userModel.find();
+  }
 }
