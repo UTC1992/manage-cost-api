@@ -17,9 +17,32 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "printWidth": 80,
+        "tabWidth": 2,
+        "endOfLine": "auto"
+      }
+    ]
   },
 };
