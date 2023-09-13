@@ -21,7 +21,19 @@ export class UserService {
     return this.userModel.create(userObject);
   }
 
-  async get() {
+  async findAll() {
     return this.userModel.find();
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} customer`;
+  }
+
+  update(id: number, updateCustomerDto: UserRequestDto) {
+    return `This action updates a #${id} customer`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} customer`;
   }
 }
