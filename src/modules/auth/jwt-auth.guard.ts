@@ -35,15 +35,17 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
-    const token = request.headers.authorization.replace('Bearer ', '');
+    if (requiredRoles) {
+      const request = context.switchToHttp().getRequest();
+      const token = request.headers.authorization.replace('Bearer ', '');
 
-    try {
-      const user = this.jwtService.verify(token) as LoginResponseDto;
+      try {
+        const user = this.jwtService.verify(token) as LoginResponseDto;
 
-      return requiredRoles.some((role) => user.roles?.includes(role));
-    } catch (error) {
-      return false;
+        return requiredRoles.some((role) => user.roles?.includes(role));
+      } catch (error) {
+        return false;
+      }
     }
   }
 }

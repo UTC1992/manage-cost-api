@@ -3,7 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from '../entities/user.entity';
 import { Model } from 'mongoose';
 import { hash } from 'bcrypt';
-import { UserRequestDto } from '../dto/userRequest.dto';
+import { UserRequestDto } from '../dto/user-request.dto';
+import { UserUpdateRequestDto } from '../dto/user-update-request.dto';
 
 @Injectable()
 export class UserService {
@@ -21,19 +22,26 @@ export class UserService {
     return this.userModel.create(userObject);
   }
 
-  async findAll() {
-    return this.userModel.find();
+  async findAll(): Promise<User[]> {
+    return this.userModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} customer`;
+  async findOne(id: string): Promise<User> {
+    return this.userModel.findOne({ _id: id }).exec();
   }
 
-  update(id: number, updateCustomerDto: UserRequestDto) {
-    return `This action updates a #${id} customer`;
+  async update(
+    id: string,
+    updateCustomerDto: UserUpdateRequestDto,
+  ): Promise<User> {
+    return this.userModel
+      .findOneAndUpdate({ _id: id }, updateCustomerDto, {
+        new: true,
+      })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} customer`;
+  remove(id: string) {
+    return this.userModel.findByIdAndRemove({ _id: id }).exec();
   }
 }
