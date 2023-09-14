@@ -39,12 +39,11 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     const token = request.headers.authorization.replace('Bearer ', '');
 
     try {
-      // Verifica y decodifica el token
       const user = this.jwtService.verify(token) as LoginResponseDto;
 
       return requiredRoles.some((role) => user.roles?.includes(role));
     } catch (error) {
-      return false; // Retorna false si hay un error al verificar el token
+      return false;
     }
   }
 }
