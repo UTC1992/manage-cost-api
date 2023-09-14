@@ -10,6 +10,8 @@ import {
 import { UserService } from '../services/user.service';
 import { UserRequestDto } from '../dto/userRequest.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { Role } from '../../auth/enums/role.enum';
 
 @ApiBearerAuth()
 @ApiTags('Users')
@@ -22,6 +24,7 @@ export class UserController {
     return this.userService.create(userObject);
   }
 
+  @Roles(Role.User)
   @Get()
   findAll() {
     return this.userService.findAll();

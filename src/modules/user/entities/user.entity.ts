@@ -18,6 +18,9 @@ export class User extends Document {
   dni: string;
 
   @Prop({ required: true })
+  roles: string[];
+
+  @Prop({ required: true })
   email: string;
 
   @Prop({ required: true })

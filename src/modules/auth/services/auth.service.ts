@@ -28,6 +28,7 @@ export class AuthService {
       sub: findUser.id,
       email: findUser.email,
       name: findUser.firstName,
+      roles: findUser.roles,
     };
 
     return {
