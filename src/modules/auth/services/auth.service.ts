@@ -2,13 +2,15 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from 'src/modules/user/entities/user.entity';
-import { LoginRequestDto } from '../dto/loginRequest.dto';
+import { LoginRequestDto } from '../dto/login-request.dto';
 import { compare } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    private jwtService: JwtService,
   ) {}
 
   async login(loginObject: LoginRequestDto) {
@@ -22,8 +24,14 @@ export class AuthService {
 
     if (!checkPassword) throw new HttpException('INCORRECT_PASSWORD', 403);
 
-    const userData = findUser;
+    const payload = {
+      sub: findUser.id,
+      email: findUser.email,
+      name: findUser.firstName,
+    };
 
-    return userData;
+    return {
+      accessToken: await this.jwtService.signAsync(payload),
+    };
   }
 }

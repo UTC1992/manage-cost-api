@@ -7,6 +7,7 @@ async function bootstrap() {
 
   // Configurar títulos de documentación
   const options = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('Manage Cost REST API')
     .setDescription('API REST for control cost')
     .setVersion('1.0')

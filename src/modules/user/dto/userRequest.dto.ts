@@ -1,6 +1,6 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
-import { LoginRequestDto } from 'src/modules/auth/dto/loginRequest.dto';
+import { LoginRequestDto } from 'src/modules/auth/dto/login-request.dto';
 
 export class UserRequestDto extends PartialType(LoginRequestDto) {
   @ApiProperty()

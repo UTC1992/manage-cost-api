@@ -9,8 +9,9 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { UserRequestDto } from '../dto/userRequest.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @ApiTags('Users')
 @Controller('user')
 export class UserController {
