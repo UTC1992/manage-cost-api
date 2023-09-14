@@ -7,9 +7,9 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { FacilityService } from './facility.service';
-import { CreateFacilityDto } from './dto/create-facility.dto';
-import { UpdateFacilityDto } from './dto/update-facility.dto';
+import { FacilityService } from '../services/facility.service';
+import { CreateFacilityDto } from '../dto/create-facility.dto';
+import { UpdateFacilityDto } from '../dto/update-facility.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Facilities')
@@ -29,7 +29,7 @@ export class FacilityController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.facilityService.findOne(+id);
+    return this.facilityService.findOne(id);
   }
 
   @Patch(':id')
@@ -37,11 +37,11 @@ export class FacilityController {
     @Param('id') id: string,
     @Body() updateFacilityDto: UpdateFacilityDto,
   ) {
-    return this.facilityService.update(+id, updateFacilityDto);
+    return this.facilityService.update(id, updateFacilityDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.facilityService.remove(+id);
+    return this.facilityService.remove(id);
   }
 }

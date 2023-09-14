@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from '../entities/user.entity';
 import { Model } from 'mongoose';
 import { hash } from 'bcrypt';
-import { UserRequestDto } from '../dto/user-request.dto';
-import { UserUpdateRequestDto } from '../dto/user-update-request.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,7 @@ export class UserService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) {}
 
-  async create(userObject: UserRequestDto) {
+  async create(userObject: CreateUserDto): Promise<User> {
     const { password } = userObject;
 
     const plainToHash = await hash(password, 10);
@@ -30,10 +30,7 @@ export class UserService {
     return this.userModel.findOne({ _id: id }).exec();
   }
 
-  async update(
-    id: string,
-    updateCustomerDto: UserUpdateRequestDto,
-  ): Promise<User> {
+  async update(id: string, updateCustomerDto: UpdateUserDto): Promise<User> {
     return this.userModel
       .findOneAndUpdate({ _id: id }, updateCustomerDto, {
         new: true,
