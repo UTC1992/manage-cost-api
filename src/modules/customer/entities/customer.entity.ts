@@ -1,7 +1,8 @@
-import { Document, HydratedDocument } from 'mongoose';
+import { Document, HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export interface ICustomer {
+  facilityId?: string;
   firstName: string;
   lastName: string;
   dni: string;
@@ -15,6 +16,9 @@ export type CustomerDocument = HydratedDocument<Customer & Document>;
 
 @Schema()
 export class Customer extends Document implements ICustomer {
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Facility' })
+  facilityId: string;
+
   @Prop({ required: true })
   firstName: string;
 

@@ -8,6 +8,9 @@ export class CreateExpenseDto implements IExpense {
   userId: string;
 
   @ApiProperty()
+  facilityId: string;
+
+  @ApiProperty()
   @IsNotEmpty()
   value: number;
 

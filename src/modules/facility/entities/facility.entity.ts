@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ICoordinates } from '../interfaces/coordinates.interface';
-import { Document, HydratedDocument } from 'mongoose';
+import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IFacility {
   userId?: string;
@@ -21,7 +21,7 @@ export type FacilityDocument = HydratedDocument<Facility & Document>;
 
 @Schema()
 export class Facility extends Document implements IFacility {
-  @Prop({ required: true })
+  @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
 
   @Prop({ required: true })
