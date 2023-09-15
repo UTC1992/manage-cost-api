@@ -3,6 +3,9 @@ import { ICustomer } from '../entities/customer.entity';
 
 export class UpdateCustomerDto implements ICustomer {
   @ApiProperty()
+  paymentId?: string;
+
+  @ApiProperty()
   firstName: string;
 
   @ApiProperty()

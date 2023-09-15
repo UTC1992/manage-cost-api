@@ -4,6 +4,9 @@ import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IFacility {
   userId?: string;
+  customerId?: string;
+  expenseId?: string;
+  paymentId?: string;
   date: Date;
   typeService: string;
   payDate: Date;
@@ -23,6 +26,15 @@ export type FacilityDocument = HydratedDocument<Facility & Document>;
 export class Facility extends Document implements IFacility {
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
+
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Customer' })
+  customerId: string;
+
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Expense' })
+  expenseId: string;
+
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Payment' })
+  paymentId: string;
 
   @Prop({ required: true })
   date: Date;

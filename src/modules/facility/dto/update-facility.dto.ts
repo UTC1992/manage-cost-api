@@ -4,6 +4,12 @@ import { IFacility } from '../entities/facility.entity';
 
 export class UpdateFacilityDto implements IFacility {
   @ApiProperty()
+  customerId: string;
+
+  @ApiProperty()
+  expenseId: string;
+
+  @ApiProperty()
   date: Date;
 
   @ApiProperty()
