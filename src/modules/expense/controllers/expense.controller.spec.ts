@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExpenseController } from './expense.controller';
-import { ExpenseService } from './expense.service';
+import { ExpenseService } from '../expense.service';
 
 describe('ExpenseController', () => {
   let controller: ExpenseController;

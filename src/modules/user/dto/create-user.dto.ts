@@ -1,8 +1,12 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { LoginRequestDto } from 'src/modules/auth/dto/login-request.dto';
+import { IUser } from '../entities/user.entity';
 
-export class CreateUserDto extends PartialType(LoginRequestDto) {
+export class CreateUserDto
+  extends PartialType(LoginRequestDto)
+  implements IUser
+{
   @ApiProperty()
   @IsNotEmpty()
   firstName: string;
@@ -18,4 +22,8 @@ export class CreateUserDto extends PartialType(LoginRequestDto) {
   @ApiProperty()
   @IsNotEmpty()
   phone: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  roles: string[];
 }

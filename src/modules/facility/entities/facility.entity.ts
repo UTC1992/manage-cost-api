@@ -2,10 +2,25 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ICoordinates } from '../interfaces/coordinates.interface';
 import { Document, HydratedDocument } from 'mongoose';
 
+export interface IFacility {
+  userId?: string;
+  date: Date;
+  typeService: string;
+  payDate: Date;
+  routerModel: string;
+  wifiName: string;
+  wifiPassword: string;
+  ip: string;
+  NAP: string;
+  power: number;
+  ONU: number;
+  coordinates: ICoordinates;
+}
+
 export type FacilityDocument = HydratedDocument<Facility & Document>;
 
 @Schema()
-export class Facility extends Document {
+export class Facility extends Document implements IFacility {
   @Prop({ required: true })
   userId: string;
 

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ICustomer } from '../entities/customer.entity';
 
-export class UpdateCustomerDto {
+export class UpdateCustomerDto implements ICustomer {
   @ApiProperty()
   firstName: string;
 

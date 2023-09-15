@@ -1,4 +1,13 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateExpenseDto } from './create-expense.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IExpense } from '../entities/expense.entity';
 
-export class UpdateExpenseDto extends PartialType(CreateExpenseDto) {}
+export class UpdateExpenseDto implements IExpense {
+  @ApiProperty()
+  value: number;
+
+  @ApiProperty()
+  description: string;
+
+  @ApiProperty()
+  date: Date;
+}

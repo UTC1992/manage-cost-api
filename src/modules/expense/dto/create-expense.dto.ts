@@ -1,1 +1,21 @@
-export class CreateExpenseDto {}
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
+import { IExpense } from '../entities/expense.entity';
+
+export class CreateExpenseDto implements IExpense {
+  @ApiProperty()
+  @IsNotEmpty()
+  userId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  value: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  description: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  date: Date;
+}

@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CoordinateDto } from './coordinate.dto';
+import { IFacility } from '../entities/facility.entity';
 
-export class UpdateFacilityDto {
+export class UpdateFacilityDto implements IFacility {
   @ApiProperty()
   date: Date;
 

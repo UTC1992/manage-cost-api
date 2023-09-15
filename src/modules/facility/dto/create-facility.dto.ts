@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { CoordinateDto } from './coordinate.dto';
+import { IFacility } from '../entities/facility.entity';
 
-export class CreateFacilityDto {
+export class CreateFacilityDto implements IFacility {
   @ApiProperty()
   @IsNotEmpty()
   userId: string;

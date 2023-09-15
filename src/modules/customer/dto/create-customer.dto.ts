@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
+import { ICustomer } from '../entities/customer.entity';
 
-export class CreateCustomerDto {
+export class CreateCustomerDto implements ICustomer {
   @ApiProperty()
   @IsNotEmpty()
   firstName: string;
