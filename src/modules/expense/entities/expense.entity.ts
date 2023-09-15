@@ -16,7 +16,7 @@ export class Expense extends Document implements IExpense {
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
 
-  @Prop({ required: true, type: Types.ObjectId, ref: 'Facility' })
+  @Prop({ required: false, type: Types.ObjectId, ref: 'Facility' })
   facilityId: string;
 
   @Prop({ required: true })
