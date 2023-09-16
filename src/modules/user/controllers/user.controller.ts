@@ -14,33 +14,37 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { Role } from '../../auth/enums/role.enum';
 import { UpdateUserDto } from '../dto/update-user.dto';
 
-// @ApiBearerAuth()
+@ApiBearerAuth()
 @ApiTags('Users')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Roles(Role.Admin)
   @Post()
   create(@Body() userObject: CreateUserDto) {
     return this.userService.create(userObject);
   }
 
-  // @Roles(Role.Admin)
+  @Roles(Role.Admin)
   @Get()
   findAll() {
     return this.userService.findAll();
   }
 
+  @Roles(Role.Admin, Role.User)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
+  @Roles(Role.Admin, Role.User)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCustomerDto: UpdateUserDto) {
     return this.userService.update(id, updateCustomerDto);
   }
 
+  @Roles(Role.Admin, Role.User)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);

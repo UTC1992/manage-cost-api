@@ -22,22 +22,18 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       context.getClass(),
     ]);
 
-    if (isPublic) {
-      return true;
-    }
-
     const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
 
-    if (!requiredRoles) {
+    if (!requiredRoles && isPublic) {
       return true;
     }
 
     if (requiredRoles) {
       const request = context.switchToHttp().getRequest();
-      const token = request.headers.authorization.replace('Bearer ', '');
+      const token = request.headers.authorization?.replace('Bearer ', '');
 
       try {
         const user = this.jwtService.verify(token) as LoginResponseDto;
@@ -47,5 +43,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         return false;
       }
     }
+
+    return super.canActivate(context);
   }
 }

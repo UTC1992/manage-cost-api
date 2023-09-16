@@ -10,8 +10,9 @@ import {
 import { ExpenseService } from '../services/expense.service';
 import { CreateExpenseDto } from '../dto/create-expense.dto';
 import { UpdateExpenseDto } from '../dto/update-expense.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @ApiTags('Expenses')
 @Controller('expense')
 export class ExpenseController {

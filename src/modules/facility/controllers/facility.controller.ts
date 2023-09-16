@@ -10,8 +10,9 @@ import {
 import { FacilityService } from '../services/facility.service';
 import { CreateFacilityDto } from '../dto/create-facility.dto';
 import { UpdateFacilityDto } from '../dto/update-facility.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @ApiTags('Facilities')
 @Controller('facility')
 export class FacilityController {
