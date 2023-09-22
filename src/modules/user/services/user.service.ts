@@ -17,7 +17,7 @@ export class UserService {
 
     const plainToHash = await hash(password, 10);
 
-    userObject = { ...userObject, password: plainToHash };
+    userObject = { ...userObject, password: plainToHash, isDeleted: false };
 
     return this.userModel.create(userObject);
   }

@@ -26,4 +26,7 @@ export class CreateUserDto
   @ApiProperty()
   @IsNotEmpty()
   roles: string[];
+
+  @ApiProperty()
+  isDeleted: boolean;
 }

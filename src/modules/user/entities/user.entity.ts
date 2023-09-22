@@ -9,6 +9,7 @@ export interface IUser {
   roles: string[];
   email?: string;
   password?: string;
+  isDeleted?: boolean;
 }
 
 export type UserDocument = HydratedDocument<User & Document>;
@@ -29,6 +30,9 @@ export class User extends Document implements IUser {
 
   @Prop({ required: true })
   roles: string[];
+
+  @Prop({ required: true })
+  isDeleted: boolean;
 
   @Prop({ required: true })
   email: string;

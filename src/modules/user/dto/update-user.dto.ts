@@ -12,6 +12,9 @@ export class UpdateUserDto implements IUser {
   dni: string;
 
   @ApiProperty()
+  isDeleted: boolean;
+
+  @ApiProperty()
   phone: string;
 
   @ApiProperty()
