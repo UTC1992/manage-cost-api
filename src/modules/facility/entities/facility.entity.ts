@@ -18,6 +18,7 @@ export interface IFacility {
   power: number;
   ONU: number;
   coordinates: ICoordinates;
+  isDeleted?: boolean;
 }
 
 export type FacilityDocument = HydratedDocument<Facility & Document>;
@@ -68,6 +69,9 @@ export class Facility extends Document implements IFacility {
 
   @Prop({ required: true, type: Object })
   coordinates: ICoordinates;
+
+  @Prop({ required: true })
+  isDeleted: boolean;
 }
 
 export const FacilitySchema = SchemaFactory.createForClass(Facility);

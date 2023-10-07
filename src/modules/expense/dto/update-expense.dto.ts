@@ -13,4 +13,7 @@ export class UpdateExpenseDto implements IExpense {
 
   @ApiProperty()
   date: Date;
+
+  @ApiProperty()
+  isDeleted: boolean;
 }

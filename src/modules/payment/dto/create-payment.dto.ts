@@ -15,4 +15,7 @@ export class CreatePaymentDto implements IPayment {
 
   @ApiProperty()
   date: Date;
+
+  @ApiProperty()
+  isDeleted: boolean;
 }

@@ -21,4 +21,7 @@ export class CreateExpenseDto implements IExpense {
   @ApiProperty()
   @IsNotEmpty()
   date: Date;
+
+  @ApiProperty()
+  isDeleted: boolean;
 }

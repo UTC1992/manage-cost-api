@@ -51,4 +51,7 @@ export class CreateFacilityDto implements IFacility {
   @ApiProperty()
   @IsNotEmpty()
   coordinates: CoordinateDto;
+
+  @ApiProperty()
+  isDeleted: boolean;
 }

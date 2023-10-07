@@ -41,4 +41,7 @@ export class UpdateFacilityDto implements IFacility {
 
   @ApiProperty()
   coordinates: CoordinateDto;
+
+  @ApiProperty()
+  isDeleted: boolean;
 }

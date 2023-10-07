@@ -11,6 +11,7 @@ export interface ICustomer {
   email: string;
   address: string;
   reference: string;
+  isDeleted?: boolean;
 }
 
 export type CustomerDocument = HydratedDocument<Customer & Document>;
@@ -43,6 +44,9 @@ export class Customer extends Document implements ICustomer {
 
   @Prop({ required: true })
   reference: string;
+
+  @Prop({ required: true })
+  isDeleted: boolean;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

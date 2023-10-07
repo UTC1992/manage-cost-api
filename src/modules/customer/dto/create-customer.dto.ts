@@ -34,4 +34,7 @@ export class CreateCustomerDto implements ICustomer {
   @ApiProperty()
   @IsNotEmpty()
   reference: string;
+
+  @ApiProperty()
+  isDeleted: boolean;
 }
