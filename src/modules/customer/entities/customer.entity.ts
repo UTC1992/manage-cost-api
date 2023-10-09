@@ -2,6 +2,7 @@ import { Document, HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export interface ICustomer {
+  userId?: string;
   facilityId?: string;
   paymentId?: string;
   firstName: string;
@@ -18,6 +19,9 @@ export type CustomerDocument = HydratedDocument<Customer & Document>;
 
 @Schema()
 export class Customer extends Document implements ICustomer {
+  @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
+  userId: string;
+
   @Prop({ required: true, type: Types.ObjectId, ref: 'Facility' })
   facilityId: string;
 

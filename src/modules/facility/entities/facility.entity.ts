@@ -3,7 +3,6 @@ import { ICoordinates } from '../interfaces/coordinates.interface';
 import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IFacility {
-  userId?: string;
   customerId?: string;
   expenseId?: string;
   paymentId?: string;
@@ -25,9 +24,6 @@ export type FacilityDocument = HydratedDocument<Facility & Document>;
 
 @Schema()
 export class Facility extends Document implements IFacility {
-  @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
-  userId: string;
-
   @Prop({ required: true, type: Types.ObjectId, ref: 'Customer' })
   customerId: string;
 

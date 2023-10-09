@@ -5,7 +5,7 @@ import { ICustomer } from '../entities/customer.entity';
 export class CreateCustomerDto implements ICustomer {
   @ApiProperty()
   @IsNotEmpty()
-  facilityId: string;
+  userId: string;
 
   @ApiProperty()
   @IsNotEmpty()

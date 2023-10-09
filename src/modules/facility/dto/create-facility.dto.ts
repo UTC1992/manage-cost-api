@@ -6,7 +6,7 @@ import { IFacility } from '../entities/facility.entity';
 export class CreateFacilityDto implements IFacility {
   @ApiProperty()
   @IsNotEmpty()
-  userId: string;
+  customerId: string;
 
   @ApiProperty()
   @IsNotEmpty()
