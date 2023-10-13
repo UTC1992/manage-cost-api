@@ -19,4 +19,7 @@ export class UpdateUserDto implements IUser {
 
   @ApiProperty()
   roles: string[];
+
+  @ApiProperty()
+  password: string;
 }

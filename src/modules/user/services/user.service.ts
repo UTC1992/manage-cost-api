@@ -23,7 +23,7 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+    return this.userModel.find({ isDeleted: false }).exec();
   }
 
   async findOne(id: string): Promise<User> {
@@ -31,6 +31,17 @@ export class UserService {
   }
 
   async update(id: string, updateCustomerDto: UpdateUserDto): Promise<User> {
+    const { password } = updateCustomerDto;
+    if (password !== undefined) {
+      const plainToHash = await hash(password, 10);
+
+      updateCustomerDto = {
+        ...updateCustomerDto,
+        password: plainToHash,
+        isDeleted: false,
+      };
+    }
+
     return this.userModel
       .findOneAndUpdate({ _id: id }, updateCustomerDto, {
         new: true,
