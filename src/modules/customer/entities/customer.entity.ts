@@ -1,9 +1,9 @@
 import { Document, HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ICoordinates } from '../interfaces/coordinates.interface';
 
 export interface ICustomer {
   userId?: string;
-  facilityId?: string;
   paymentId?: string;
   firstName: string;
   lastName: string;
@@ -12,6 +12,17 @@ export interface ICustomer {
   email: string;
   address: string;
   reference: string;
+  createdAt?: Date;
+  typeService: string;
+  payDate: Date;
+  routerModel: string;
+  wifiName: string;
+  wifiPassword: string;
+  ip: string;
+  NAP: string;
+  power: number;
+  ONU: number;
+  coordinates: ICoordinates;
   isDeleted?: boolean;
 }
 
@@ -21,9 +32,6 @@ export type CustomerDocument = HydratedDocument<Customer & Document>;
 export class Customer extends Document implements ICustomer {
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
-
-  @Prop({ required: true, type: Types.ObjectId, ref: 'Facility' })
-  facilityId: string;
 
   @Prop({ required: true, type: Types.ObjectId, ref: 'Payment' })
   paymentId: string;
@@ -48,6 +56,39 @@ export class Customer extends Document implements ICustomer {
 
   @Prop({ required: true })
   reference: string;
+
+  @Prop({ required: true })
+  createdAt: Date;
+
+  @Prop({ required: true })
+  typeService: string;
+
+  @Prop({ required: true })
+  payDate: Date;
+
+  @Prop({ required: true })
+  routerModel: string;
+
+  @Prop({ required: true })
+  wifiName: string;
+
+  @Prop({ required: true })
+  wifiPassword: string;
+
+  @Prop({ required: true })
+  ip: string;
+
+  @Prop({ required: true })
+  NAP: string;
+
+  @Prop({ required: true })
+  power: number;
+
+  @Prop({ required: true })
+  ONU: number;
+
+  @Prop({ required: true, type: Object })
+  coordinates: ICoordinates;
 
   @Prop({ required: true })
   isDeleted: boolean;

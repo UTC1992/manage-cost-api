@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ICustomer } from '../entities/customer.entity';
+import { CoordinateDto } from './coordinate.dto';
 
 export class UpdateCustomerDto implements ICustomer {
   @ApiProperty()
@@ -25,6 +26,36 @@ export class UpdateCustomerDto implements ICustomer {
 
   @ApiProperty()
   reference: string;
+
+  @ApiProperty()
+  typeService: string;
+
+  @ApiProperty()
+  payDate: Date;
+
+  @ApiProperty()
+  routerModel: string;
+
+  @ApiProperty()
+  wifiName: string;
+
+  @ApiProperty()
+  wifiPassword: string;
+
+  @ApiProperty()
+  ip: string;
+
+  @ApiProperty()
+  NAP: string;
+
+  @ApiProperty()
+  power: number;
+
+  @ApiProperty()
+  ONU: number;
+
+  @ApiProperty()
+  coordinates: CoordinateDto;
 
   @ApiProperty()
   isDeleted: boolean;
