@@ -32,7 +32,9 @@ export class AuthService {
     };
 
     return {
-      accessToken: await this.jwtService.signAsync(payload),
+      accessToken: await this.jwtService.signAsync(payload, {
+        expiresIn: '1 day',
+      }),
     };
   }
 }
