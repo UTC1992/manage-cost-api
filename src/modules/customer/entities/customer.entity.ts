@@ -4,7 +4,6 @@ import { ICoordinates } from '../interfaces/coordinates.interface';
 
 export interface ICustomer {
   userId?: string;
-  paymentId?: string;
   firstName: string;
   lastName: string;
   dni: string;
@@ -13,7 +12,7 @@ export interface ICustomer {
   address: string;
   reference: string;
   createdAt?: Date;
-  typeService: string;
+  typeService: number;
   payDate: Date;
   routerModel: string;
   wifiName: string;
@@ -22,7 +21,7 @@ export interface ICustomer {
   NAP: string;
   power: number;
   ONU: number;
-  coordinates: ICoordinates;
+  coordinates?: ICoordinates;
   isDeleted?: boolean;
 }
 
@@ -33,9 +32,6 @@ export class Customer extends Document implements ICustomer {
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
 
-  @Prop({ required: true, type: Types.ObjectId, ref: 'Payment' })
-  paymentId: string;
-
   @Prop({ required: true })
   firstName: string;
 
@@ -57,11 +53,11 @@ export class Customer extends Document implements ICustomer {
   @Prop({ required: true })
   reference: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false, default: new Date() })
   createdAt: Date;
 
   @Prop({ required: true })
-  typeService: string;
+  typeService: number;
 
   @Prop({ required: true })
   payDate: Date;
@@ -87,10 +83,10 @@ export class Customer extends Document implements ICustomer {
   @Prop({ required: true })
   ONU: number;
 
-  @Prop({ required: true, type: Object })
+  @Prop({ required: false, type: Object })
   coordinates: ICoordinates;
 
-  @Prop({ required: true })
+  @Prop({ required: false, default: false })
   isDeleted: boolean;
 }
 

@@ -28,7 +28,7 @@ export class UpdateCustomerDto implements ICustomer {
   reference: string;
 
   @ApiProperty()
-  typeService: string;
+  typeService: number;
 
   @ApiProperty()
   payDate: Date;

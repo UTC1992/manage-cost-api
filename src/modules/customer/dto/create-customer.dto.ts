@@ -38,15 +38,7 @@ export class CreateCustomerDto implements ICustomer {
 
   @ApiProperty()
   @IsNotEmpty()
-  customerId: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  createdAt: Date;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  typeService: string;
+  typeService: number;
 
   @ApiProperty()
   @IsNotEmpty()
@@ -81,7 +73,6 @@ export class CreateCustomerDto implements ICustomer {
   ONU: number;
 
   @ApiProperty()
-  @IsNotEmpty()
   coordinates: CoordinateDto;
 
   @ApiProperty()
