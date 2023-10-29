@@ -11,6 +11,7 @@ import { ExpenseModule } from './modules/expense/expense.module';
 import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ReportModule } from './modules/report/report.module';
+import { BusinessModule } from './modules/business/business.module';
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/manageCostDb'),
@@ -21,6 +22,7 @@ import { ReportModule } from './modules/report/report.module';
     ExpenseModule,
     PaymentModule,
     ReportModule,
+    BusinessModule,
   ],
   controllers: [AppController],
   providers: [
