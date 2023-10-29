@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateBusinessDto } from '../dto/create-business.dto';
 import { UpdateBusinessDto } from '../dto/update-business.dto';
 import { Business, BusinessDocument } from '../entities/business.entity';
@@ -13,6 +13,17 @@ export class BusinessService {
   ) {}
 
   async create(createBusinessDto: CreateBusinessDto): Promise<Business> {
+    const business = this.businessModel
+      .find({ ruc: createBusinessDto.ruc })
+      .exec();
+
+    if (business) {
+      throw new HttpException(
+        'Business already exist.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     return this.businessModel.create(createBusinessDto);
   }
 

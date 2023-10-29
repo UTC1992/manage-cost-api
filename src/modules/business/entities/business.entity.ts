@@ -4,6 +4,7 @@ import { Document, HydratedDocument } from 'mongoose';
 export interface IBusiness {
   ruc: string;
   name: string;
+  isVerified?: boolean;
   isDeleted?: boolean;
 }
 
@@ -16,6 +17,9 @@ export class Business extends Document implements IBusiness {
 
   @Prop({ required: true })
   name: string;
+
+  @Prop({ required: false, default: false })
+  isVerified: boolean;
 
   @Prop({ required: false, default: false })
   isDeleted: boolean;
