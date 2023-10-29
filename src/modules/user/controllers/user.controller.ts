@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
@@ -28,8 +29,8 @@ export class UserController {
 
   @Roles(Role.Admin)
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  findAll(@Query('businessId') businessId: string) {
+    return this.userService.findAll(businessId);
   }
 
   @Roles(Role.Admin)

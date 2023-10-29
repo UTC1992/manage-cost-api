@@ -22,8 +22,10 @@ export class UserService {
     return this.userModel.create(userObject);
   }
 
-  async findAll(): Promise<User[]> {
-    return this.userModel.find({ isDeleted: false }).exec();
+  async findAll(businessId: string): Promise<User[]> {
+    return this.userModel
+      .find({ $and: [{ isDeleted: false }, { businessId }] })
+      .exec();
   }
 
   async findOne(id: string): Promise<User> {
