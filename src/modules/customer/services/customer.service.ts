@@ -17,7 +17,7 @@ export class CustomerService {
   }
 
   async findAll(): Promise<Customer[]> {
-    return this.customerModel.find().exec();
+    return this.customerModel.find({ isDeleted: false }).exec();
   }
 
   async findOne(id: string): Promise<Customer> {
