@@ -3,7 +3,7 @@ import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IExpense {
   userId?: string;
-  facilityId?: string;
+  customerId?: string;
   value: number;
   description: string;
   date: Date;
@@ -17,8 +17,8 @@ export class Expense extends Document implements IExpense {
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
 
-  @Prop({ required: false, type: Types.ObjectId, ref: 'Facility' })
-  facilityId: string;
+  @Prop({ required: false, type: Types.ObjectId, ref: 'Customer' })
+  customerId: string;
 
   @Prop({ required: true })
   value: number;
@@ -29,7 +29,7 @@ export class Expense extends Document implements IExpense {
   @Prop({ required: true })
   date: Date;
 
-  @Prop({ required: true })
+  @Prop({ required: false, default: false })
   isDeleted: boolean;
 }
 
