@@ -10,8 +10,11 @@ import {
 import { BusinessService } from '../services/business.service';
 import { CreateBusinessDto } from '../dto/create-business.dto';
 import { UpdateBusinessDto } from '../dto/update-business.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { Role } from '../../auth/enums/role.enum';
 
+@ApiBearerAuth()
 @ApiTags('Business')
 @Controller('business')
 export class BusinessController {
@@ -22,6 +25,7 @@ export class BusinessController {
     return this.businessService.create(createBusinessDto);
   }
 
+  @Roles(Role.Admin)
   @Get()
   findAll() {
     return this.businessService.findAll();

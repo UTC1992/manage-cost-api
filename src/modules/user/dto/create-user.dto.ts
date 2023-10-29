@@ -9,6 +9,10 @@ export class CreateUserDto
 {
   @ApiProperty()
   @IsNotEmpty()
+  businessId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   firstName: string;
 
   @ApiProperty()

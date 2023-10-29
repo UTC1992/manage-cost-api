@@ -3,6 +3,9 @@ import { IUser } from '../entities/user.entity';
 
 export class UpdateUserDto implements IUser {
   @ApiProperty()
+  businessId: string;
+
+  @ApiProperty()
   firstName: string;
 
   @ApiProperty()
