@@ -43,6 +43,7 @@ export class AuthService {
       email: findUser.email,
       name: findUser.firstName,
       roles: findUser.roles,
+      businessId: findUser.businessId,
     };
 
     return {
