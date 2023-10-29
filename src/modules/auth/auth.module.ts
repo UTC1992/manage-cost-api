@@ -6,10 +6,14 @@ import { AuthController } from './controllers/auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwt } from './constants/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { Business, BusinessSchema } from '../business/entities/business.entity';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: Business.name, schema: BusinessSchema },
+    ]),
     JwtModule.register({
       global: true,
       secret: jwt.secret,
