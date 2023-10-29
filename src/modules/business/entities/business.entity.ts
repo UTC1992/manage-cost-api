@@ -1,8 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, HydratedDocument, Types } from 'mongoose';
+import { Document, HydratedDocument } from 'mongoose';
 
 export interface IBusiness {
-  userId?: string;
   ruc: string;
   name: string;
   isDeleted?: boolean;
@@ -12,9 +11,6 @@ export type BusinessDocument = HydratedDocument<Business & Document>;
 
 @Schema()
 export class Business extends Document implements IBusiness {
-  @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
-  userId: string;
-
   @Prop({ required: true })
   ruc: string;
 
