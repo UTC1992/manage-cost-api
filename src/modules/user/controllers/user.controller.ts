@@ -32,19 +32,19 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Roles(Role.Admin, Role.User)
+  @Roles(Role.Admin)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Roles(Role.Admin, Role.User)
+  @Roles(Role.Admin)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCustomerDto: UpdateUserDto) {
     return this.userService.update(id, updateCustomerDto);
   }
 
-  @Roles(Role.Admin, Role.User)
+  @Roles(Role.Admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
