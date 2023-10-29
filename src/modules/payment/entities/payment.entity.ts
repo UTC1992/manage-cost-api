@@ -2,7 +2,6 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IPayment {
-  businessId?: string;
   customerId?: string;
   value: number;
   description: string;

@@ -17,7 +17,10 @@ export class PaymentService {
   }
 
   async findAll(): Promise<Payment[]> {
-    return this.paymentModel.find({ isDeleted: false }).exec();
+    return this.paymentModel
+      .find({ isDeleted: false })
+      .populate('customerId')
+      .exec();
   }
 
   async findOne(id: string): Promise<Payment> {

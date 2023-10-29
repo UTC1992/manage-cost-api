@@ -41,7 +41,7 @@ export class AuthService {
     const payload = {
       userId: findUser.id,
       email: findUser.email,
-      name: findUser.firstName,
+      name: `${findUser.firstName} ${findUser.lastName}`,
       roles: findUser.roles,
       businessId: findUser.businessId,
     };
