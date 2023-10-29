@@ -17,7 +17,10 @@ export class ExpenseService {
   }
 
   async findAll(): Promise<Expense[]> {
-    return this.expenseModel.find({ isDeleted: false }).exec();
+    return this.expenseModel
+      .find({ isDeleted: false })
+      .populate('userId')
+      .exec();
   }
 
   async findOne(id: string): Promise<Expense> {
