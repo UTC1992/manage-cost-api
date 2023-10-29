@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IPayment {
+  businessId?: string;
   customerId?: string;
   value: number;
   description: string;
@@ -13,6 +14,9 @@ export type PaymentDocument = HydratedDocument<Payment & Document>;
 
 @Schema()
 export class Payment extends Document implements IPayment {
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Business' })
+  businessId: string;
+
   @Prop({ required: true, type: Types.ObjectId, ref: 'Customer' })
   customerId: string;
 

@@ -6,6 +6,10 @@ import { CoordinateDto } from './coordinate.dto';
 export class CreateCustomerDto implements ICustomer {
   @ApiProperty()
   @IsNotEmpty()
+  businessId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   userId: string;
 
   @ApiProperty()

@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ICoordinates } from '../interfaces/coordinates.interface';
 
 export interface ICustomer {
+  businessId?: string;
   userId?: string;
   firstName: string;
   lastName: string;
@@ -29,6 +30,9 @@ export type CustomerDocument = HydratedDocument<Customer & Document>;
 
 @Schema()
 export class Customer extends Document implements ICustomer {
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Business' })
+  businessId: string;
+
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
 

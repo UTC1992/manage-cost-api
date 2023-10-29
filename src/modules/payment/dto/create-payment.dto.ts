@@ -5,6 +5,10 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreatePaymentDto implements IPayment {
   @ApiProperty()
   @IsNotEmpty()
+  businessId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   customerId: string;
 
   @ApiProperty()

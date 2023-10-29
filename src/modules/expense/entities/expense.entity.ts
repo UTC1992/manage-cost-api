@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument, Types } from 'mongoose';
 
 export interface IExpense {
+  businessId?: string;
   userId?: string;
   customerId?: string;
   value: number;
@@ -14,6 +15,9 @@ export type ExpenseDocument = HydratedDocument<Expense & Document>;
 
 @Schema()
 export class Expense extends Document implements IExpense {
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Business' })
+  businessId: string;
+
   @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
   userId: string;
 

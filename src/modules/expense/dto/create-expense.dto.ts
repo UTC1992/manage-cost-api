@@ -5,6 +5,10 @@ import { IExpense } from '../entities/expense.entity';
 export class CreateExpenseDto implements IExpense {
   @ApiProperty()
   @IsNotEmpty()
+  businessId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   userId: string;
 
   @ApiProperty()
