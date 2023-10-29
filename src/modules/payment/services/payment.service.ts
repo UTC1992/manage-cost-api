@@ -17,7 +17,7 @@ export class PaymentService {
   }
 
   async findAll(): Promise<Payment[]> {
-    return this.paymentModel.find().exec();
+    return this.paymentModel.find({ isDeleted: false }).exec();
   }
 
   async findOne(id: string): Promise<Payment> {
