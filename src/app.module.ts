@@ -6,7 +6,6 @@ import { UserModule } from './modules/user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { CustomerModule } from './modules/customer/customer.module';
-import { FacilityModule } from './modules/facility/facility.module';
 import { ExpenseModule } from './modules/expense/expense.module';
 import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { PaymentModule } from './modules/payment/payment.module';
@@ -18,7 +17,6 @@ import { BusinessModule } from './modules/business/business.module';
     AuthModule,
     UserModule,
     CustomerModule,
-    FacilityModule,
     ExpenseModule,
     PaymentModule,
     ReportModule,

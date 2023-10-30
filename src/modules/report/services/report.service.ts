@@ -1,9 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import {
-  Facility,
-  FacilityDocument,
-} from '../../facility/entities/facility.entity';
 import { Model } from 'mongoose';
 import {
   Customer,
@@ -22,8 +18,6 @@ import {
 @Injectable()
 export class ReportService {
   constructor(
-    @InjectModel(Facility.name)
-    private readonly facilityModel: Model<FacilityDocument>,
     @InjectModel(Customer.name)
     private readonly customerModel: Model<CustomerDocument>,
     @InjectModel(Payment.name)
@@ -34,10 +28,9 @@ export class ReportService {
     private readonly expenseModel: Model<ExpenseDocument>,
   ) {}
 
-  async facilitiesByUser(userId: string) {
-    return this.facilityModel
+  async customerByUser(userId: string) {
+    return this.customerModel
       .find({ userId })
-      .populate('customerId')
       .populate('paymentId')
       .exec();
   }
