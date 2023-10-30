@@ -6,17 +6,19 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CustomerService } from '../services/customer.service';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ERole } from '../../auth/enums/role.enum';
 
 @ApiBearerAuth()
 @ApiTags('Customers')
 @Controller('customer')
 export class CustomerController {
-  constructor(private readonly customerService: CustomerService) {}
+  constructor(private readonly customerService: CustomerService) { }
 
   @Post()
   create(@Body() createCustomerDto: CreateCustomerDto) {
@@ -24,8 +26,8 @@ export class CustomerController {
   }
 
   @Get()
-  findAll() {
-    return this.customerService.findAll();
+  findAll(@Query('role') role: ERole, @Query('businessId') businessId: string, @Query('userId') userId: string) {
+    return this.customerService.findAll(role, businessId, userId);
   }
 
   @Get(':id')

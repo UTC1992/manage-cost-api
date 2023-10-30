@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { IS_PUBLIC_KEY } from './decorators/public.decorator';
-import { Role } from './enums/role.enum';
+import { ERole } from './enums/role.enum';
 import { ROLES_KEY } from './decorators/roles.decorator';
 import { JwtService } from '@nestjs/jwt';
 import { LoginResponseDto } from './dto/login-response.dto';
@@ -22,7 +22,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       context.getClass(),
     ]);
 
-    const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
+    const requiredRoles = this.reflector.getAllAndOverride<ERole[]>(ROLES_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);

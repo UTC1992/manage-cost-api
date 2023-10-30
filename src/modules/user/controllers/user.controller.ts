@@ -12,7 +12,7 @@ import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../auth/decorators/roles.decorator';
-import { Role } from '../../auth/enums/role.enum';
+import { ERole } from '../../auth/enums/role.enum';
 import { UpdateUserDto } from '../dto/update-user.dto';
 
 @ApiBearerAuth()
@@ -21,31 +21,31 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Roles(Role.Admin)
+  @Roles(ERole.Admin)
   @Post()
   create(@Body() userObject: CreateUserDto) {
     return this.userService.create(userObject);
   }
 
-  @Roles(Role.Admin)
+  @Roles(ERole.Admin)
   @Get()
   findAll(@Query('businessId') businessId: string) {
     return this.userService.findAll(businessId);
   }
 
-  @Roles(Role.Admin)
+  @Roles(ERole.Admin)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Roles(Role.Admin)
+  @Roles(ERole.Admin)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCustomerDto: UpdateUserDto) {
     return this.userService.update(id, updateCustomerDto);
   }
 
-  @Roles(Role.Admin)
+  @Roles(ERole.Admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
