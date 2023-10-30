@@ -38,6 +38,15 @@ export class AuthService {
       );
     }
 
+    const existBusiness = await this.businessModel.findById(findUser.businessId)
+  
+    if (!existBusiness) {
+      throw new HttpException(
+        'Business was deleted or does not exist.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const payload = {
       userId: findUser.id,
       email: findUser.email,

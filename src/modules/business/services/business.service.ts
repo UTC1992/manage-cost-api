@@ -13,10 +13,10 @@ export class BusinessService {
   ) {}
 
   async create(createBusinessDto: CreateBusinessDto): Promise<Business> {
-    const business = this.businessModel
-      .find({ ruc: createBusinessDto.ruc })
+    const business = await this.businessModel
+      .findOne({ ruc: createBusinessDto.ruc })
       .exec();
-
+      
     if (business) {
       throw new HttpException(
         'Business already exist.',
