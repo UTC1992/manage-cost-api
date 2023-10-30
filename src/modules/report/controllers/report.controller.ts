@@ -7,9 +7,9 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 @Controller('report')
 export class ReportController {
   constructor(private readonly reportService: ReportService) {}
-  @Get('customerByUser/:userId')
-  customerByUser(@Param('userId') userId: string) {
-    return this.reportService.customerByUser(userId);
+  @Get('paymentsByUser/:userId')
+  paymentsByUser(@Param('userId') userId: string) {
+    return this.reportService.paymentsByUser(userId);
   }
 
   @Get('expensesByUser/:userId')
