@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PaymentService } from '../services/payment.service';
 import { CreatePaymentDto } from '../dto/create-payment.dto';
 import { UpdatePaymentDto } from '../dto/update-payment.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ERole } from '../../auth/enums/role.enum';
 
 @ApiBearerAuth()
 @ApiTags('Payment')
@@ -24,8 +26,8 @@ export class PaymentController {
   }
 
   @Get()
-  findAll() {
-    return this.paymentService.findAll();
+  findAll(@Query('role') role: ERole, @Query('businessId') businessId: string, @Query('userId') userId: string) {
+    return this.paymentService.findAll(role, businessId, userId);
   }
 
   @Get(':id')

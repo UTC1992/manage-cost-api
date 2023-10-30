@@ -4,6 +4,7 @@ import { UpdatePaymentDto } from '../dto/update-payment.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Payment, PaymentDocument } from '../entities/payment.entity';
 import { Model } from 'mongoose';
+import { ERole } from '../../auth/enums/role.enum';
 
 @Injectable()
 export class PaymentService {
@@ -16,9 +17,17 @@ export class PaymentService {
     return this.paymentModel.create(createPaymentDto);
   }
 
-  async findAll(): Promise<Payment[]> {
+  async findAll(role: ERole, businessId: string, userId: string): Promise<Payment[]> {
+    if (role === ERole.Admin) {
+      return this.paymentModel.find({
+        isDeleted: false, businessId
+      }).populate('customerId').exec();
+    }
+    
     return this.paymentModel
-      .find({ isDeleted: false })
+      .find({ isDeleted: false, $and:  [{
+        businessId
+      }, { userId }]  })
       .populate('customerId')
       .exec();
   }
