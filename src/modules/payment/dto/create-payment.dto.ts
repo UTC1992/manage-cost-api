@@ -9,6 +9,10 @@ export class CreatePaymentDto implements IPayment {
 
   @ApiProperty()
   @IsNotEmpty()
+  userId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   customerId: string;
 
   @ApiProperty()

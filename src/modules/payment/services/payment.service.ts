@@ -17,17 +17,31 @@ export class PaymentService {
     return this.paymentModel.create(createPaymentDto);
   }
 
-  async findAll(role: ERole, businessId: string, userId: string): Promise<Payment[]> {
+  async findAll(
+    role: ERole,
+    businessId: string,
+    userId: string,
+  ): Promise<Payment[]> {
     if (role === ERole.Admin) {
-      return this.paymentModel.find({
-        isDeleted: false, businessId
-      }).populate('customerId').exec();
+      return this.paymentModel
+        .find({
+          isDeleted: false,
+          businessId,
+        })
+        .populate('customerId')
+        .exec();
     }
-    
+
     return this.paymentModel
-      .find({ isDeleted: false, $and:  [{
-        businessId
-      }, { userId }]  })
+      .find({
+        isDeleted: false,
+        $and: [
+          {
+            businessId,
+          },
+          { userId },
+        ],
+      })
       .populate('customerId')
       .exec();
   }

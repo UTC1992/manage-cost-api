@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { hash } from 'bcrypt';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { ERole } from '../../auth/enums/role.enum';
 
 @Injectable()
 export class UserService {
@@ -24,7 +25,13 @@ export class UserService {
 
   async findAll(businessId: string): Promise<User[]> {
     return this.userModel
-      .find({ $and: [{ isDeleted: false }, { businessId }] })
+      .find({
+        $and: [
+          { isDeleted: false },
+          { businessId },
+          { roles: [ERole.Technician] },
+        ],
+      })
       .exec();
   }
 
