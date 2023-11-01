@@ -20,9 +20,10 @@ export class PaymentService {
   async findAll(
     role: ERole,
     businessId: string,
-    userId: string,
+    userId?: string,
   ): Promise<Payment[]> {
-    if (role === ERole.Admin) {
+    console.log(userId);
+    if (role === ERole.Admin && userId === 'undefined') {
       return this.paymentModel
         .find({
           isDeleted: false,

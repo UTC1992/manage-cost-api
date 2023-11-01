@@ -17,17 +17,31 @@ export class ExpenseService {
     return this.expenseModel.create(createExpenseDto);
   }
 
-  async findAll(role: ERole, businessId: string, userId: string): Promise<Expense[]> {
-    if (role === ERole.Admin) {
-      return this.expenseModel.find({
-        isDeleted: false, businessId
-      }).populate('userId').exec();
+  async findAll(
+    role: ERole,
+    businessId: string,
+    userId?: string,
+  ): Promise<Expense[]> {
+    if (role === ERole.Admin && userId === 'undefined') {
+      return this.expenseModel
+        .find({
+          isDeleted: false,
+          businessId,
+        })
+        .populate('userId')
+        .exec();
     }
-    
+
     return this.expenseModel
-      .find({ isDeleted: false, $and:  [{
-        businessId
-      }, { userId }] })
+      .find({
+        isDeleted: false,
+        $and: [
+          {
+            businessId,
+          },
+          { userId },
+        ],
+      })
       .populate('userId')
       .exec();
   }

@@ -26,7 +26,11 @@ export class ExpenseController {
   }
 
   @Get()
-  findAll(@Query('role') role: ERole, @Query('businessId') businessId: string, @Query('userId') userId: string) {
+  findAll(
+    @Query('role') role: ERole,
+    @Query('businessId') businessId: string,
+    @Query('userId') userId?: string,
+  ) {
     return this.expenseService.findAll(role, businessId, userId);
   }
 
