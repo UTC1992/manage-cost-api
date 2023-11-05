@@ -7,4 +7,7 @@ export class UpdatePaymentDto extends PartialType(CreatePaymentDto) {
 
   @ApiProperty()
   isDeleted: boolean;
+
+  @ApiProperty()
+  isPaid: boolean;
 }

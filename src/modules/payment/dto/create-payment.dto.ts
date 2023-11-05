@@ -26,4 +26,7 @@ export class CreatePaymentDto implements IPayment {
 
   @ApiProperty()
   isDeleted: boolean;
+
+  @ApiProperty()
+  isPaid: boolean;
 }

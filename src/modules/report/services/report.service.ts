@@ -28,11 +28,14 @@ export class ReportService {
     private readonly expenseModel: Model<ExpenseDocument>,
   ) {}
 
-  async paymentsByUser(userId: string) {
-    return this.paymentModel.find({ userId }).populate('customerId').exec();
+  async paymentsByUser(userId: string, isPaid: boolean) {
+    return this.paymentModel
+      .find({ userId, isPaid, isDeleted: false })
+      .populate('customerId')
+      .exec();
   }
 
-  async expensesByUser(userId: string) {
-    return this.expenseModel.find({ userId }).exec();
+  async expensesByUser(userId: string, isPaid: boolean) {
+    return this.expenseModel.find({ userId, isPaid, isDeleted: false }).exec();
   }
 }

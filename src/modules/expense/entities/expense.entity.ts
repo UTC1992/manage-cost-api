@@ -9,6 +9,7 @@ export interface IExpense {
   description: string;
   date: Date;
   isDeleted?: boolean;
+  isPaid?: boolean;
 }
 
 export type ExpenseDocument = HydratedDocument<Expense & Document>;
@@ -35,6 +36,9 @@ export class Expense extends Document implements IExpense {
 
   @Prop({ required: false, default: false })
   isDeleted: boolean;
+
+  @Prop({ required: false, default: false })
+  isPaid: boolean;
 }
 
 export const ExpenseSchema = SchemaFactory.createForClass(Expense);

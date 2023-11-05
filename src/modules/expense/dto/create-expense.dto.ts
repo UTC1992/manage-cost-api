@@ -25,4 +25,7 @@ export class CreateExpenseDto implements IExpense {
 
   @ApiProperty()
   isDeleted: boolean;
+
+  @ApiProperty()
+  isPaid: boolean;
 }

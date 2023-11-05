@@ -8,6 +8,7 @@ export interface IPayment {
   description: string;
   date: Date;
   isDeleted?: boolean;
+  isPaid: boolean;
 }
 
 export type PaymentDocument = HydratedDocument<Payment & Document>;
@@ -34,6 +35,9 @@ export class Payment extends Document implements IPayment {
 
   @Prop({ required: false, default: false })
   isDeleted: boolean;
+
+  @Prop({ required: false, default: false })
+  isPaid: boolean;
 }
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment);
