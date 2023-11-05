@@ -22,7 +22,6 @@ export class PaymentService {
     businessId: string,
     userId?: string,
   ): Promise<Payment[]> {
-    console.log(userId);
     if (role === ERole.Admin && userId === 'undefined') {
       return this.paymentModel
         .find({
