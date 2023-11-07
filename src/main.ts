@@ -22,8 +22,9 @@ async function bootstrap() {
     origin: '*',
     methods: 'GET, PUT, POST, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
   });
 
-  await app.listen(3005);
+  await app.listen(process.env.PORT, '0.0.0.0');
 }
 bootstrap();
