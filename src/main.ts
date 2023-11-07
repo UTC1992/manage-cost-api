@@ -18,7 +18,13 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   // cors
-  app.enableCors({ origin: process.env.ORIGIN_URL });
+  app.enableCors({
+    origin: [
+      'http://localhost:3000',
+      'https://manage-services-cost.vercel.app',
+    ],
+    methods: ['POST', 'PUT', 'DELETE', 'GET'],
+  });
 
   await app.listen(3005);
 }

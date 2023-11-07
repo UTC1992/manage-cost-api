@@ -15,9 +15,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(
-      `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}`,
-    ),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     AuthModule,
     UserModule,
     CustomerModule,
