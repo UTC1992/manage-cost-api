@@ -11,9 +11,13 @@ import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ReportModule } from './modules/report/report.module';
 import { BusinessModule } from './modules/business/business.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/manageCostDb'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(
+      `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}`,
+    ),
     AuthModule,
     UserModule,
     CustomerModule,
