@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ReportService } from '../services/report.service';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiTags('Reports')
@@ -8,18 +8,48 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 export class ReportController {
   constructor(private readonly reportService: ReportService) {}
   @Get('paymentsByUser')
+  @ApiQuery({
+    name: 'startDate',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'endDate',
+    required: false,
+  })
   paymentsByUser(
     @Query('userId') userId: string,
     @Query('isPaid') isPaid: boolean,
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
   ) {
-    return this.reportService.paymentsByUser(userId, isPaid);
+    return this.reportService.paymentsByUser(
+      userId,
+      isPaid,
+      startDate,
+      endDate,
+    );
   }
 
   @Get('expensesByUser')
+  @ApiQuery({
+    name: 'startDate',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'endDate',
+    required: false,
+  })
   expensesByUser(
     @Query('userId') userId: string,
     @Query('isPaid') isPaid: boolean,
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
   ) {
-    return this.reportService.expensesByUser(userId, isPaid);
+    return this.reportService.expensesByUser(
+      userId,
+      isPaid,
+      startDate,
+      endDate,
+    );
   }
 }

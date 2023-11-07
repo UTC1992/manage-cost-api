@@ -28,14 +28,63 @@ export class ReportService {
     private readonly expenseModel: Model<ExpenseDocument>,
   ) {}
 
-  async paymentsByUser(userId: string, isPaid: boolean) {
+  async paymentsByUser(
+    userId: string,
+    isPaid: boolean,
+    startDate?: string,
+    endDate?: string,
+  ) {
+    if (!userId) {
+      return;
+    }
+
+    if (startDate !== 'undefined' && endDate !== 'undefined') {
+      console.log(startDate, endDate);
+      return this.paymentModel
+        .find({
+          userId,
+          isPaid,
+          isDeleted: false,
+          date: {
+            $gte: startDate,
+            $lte: endDate,
+          },
+        })
+        .populate('customerId')
+        .exec();
+    }
+
     return this.paymentModel
       .find({ userId, isPaid, isDeleted: false })
       .populate('customerId')
       .exec();
   }
 
-  async expensesByUser(userId: string, isPaid: boolean) {
+  async expensesByUser(
+    userId: string,
+    isPaid: boolean,
+    startDate?: string,
+    endDate?: string,
+  ) {
+    if (!userId) {
+      return;
+    }
+
+    if (startDate !== 'undefined' && endDate !== 'undefined') {
+      return this.expenseModel
+        .find({
+          userId,
+          isPaid,
+          isDeleted: false,
+          date: {
+            $gte: startDate,
+            $lte: endDate,
+          },
+        })
+        .populate('customerId')
+        .exec();
+    }
+
     return this.expenseModel.find({ userId, isPaid, isDeleted: false }).exec();
   }
 }
