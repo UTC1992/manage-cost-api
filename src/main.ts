@@ -23,7 +23,7 @@ async function bootstrap() {
       'http://localhost:3000',
       'https://manage-services-cost.vercel.app',
     ],
-    methods: 'GET, PUT, POST, DELETE',
+    methods: 'GET, PUT, POST, DELETE, PATCH',
   });
 
   await app.listen(process.env.PORT, '0.0.0.0');
