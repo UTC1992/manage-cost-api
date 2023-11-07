@@ -19,11 +19,9 @@ async function bootstrap() {
 
   // cors
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'https://manage-services-cost.vercel.app',
-    ],
-    methods: ['POST', 'PUT', 'DELETE', 'GET'],
+    origin: '*',
+    methods: 'GET, PUT, POST, DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
   });
 
   await app.listen(3005);
