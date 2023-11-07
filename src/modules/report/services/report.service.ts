@@ -87,4 +87,18 @@ export class ReportService {
 
     return this.expenseModel.find({ userId, isPaid, isDeleted: false }).exec();
   }
+
+  async updateManyExpensesIsPaid(userId: string) {
+    return this.expenseModel.updateMany(
+      { isPaid: false, userId },
+      { $set: { isPaid: true } },
+    );
+  }
+
+  async updateManyPaymentsIsPaid(userId: string) {
+    return this.paymentModel.updateMany(
+      { isPaid: false, userId },
+      { $set: { isPaid: true } },
+    );
+  }
 }

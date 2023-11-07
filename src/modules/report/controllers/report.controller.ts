@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Patch, Query } from '@nestjs/common';
 import { ReportService } from '../services/report.service';
 import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 
@@ -50,6 +50,19 @@ export class ReportController {
       isPaid,
       startDate,
       endDate,
+    );
+  }
+
+  @Patch('updateExpensesAndPaymentsToIsPaid')
+  async updateExpensesAndPaymentsToIsPaid(@Query('userId') userId: string) {
+    const [updateExpenses, updatePayments] = await Promise.allSettled([
+      this.reportService.updateManyExpensesIsPaid(userId),
+      this.reportService.updateManyPaymentsIsPaid(userId),
+    ]);
+
+    return (
+      updateExpenses.status === 'fulfilled' &&
+      updatePayments.status === 'fulfilled'
     );
   }
 }
