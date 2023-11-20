@@ -10,4 +10,7 @@ export class UpdatePaymentDto extends PartialType(CreatePaymentDto) {
 
   @ApiProperty()
   isPaid: boolean;
+
+  @ApiProperty()
+  paymentType: string;
 }

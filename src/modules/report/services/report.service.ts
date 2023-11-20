@@ -31,6 +31,7 @@ export class ReportService {
   async paymentsByUser(
     userId: string,
     isPaid: boolean,
+    paymentType: string,
     startDate?: string,
     endDate?: string,
   ) {
@@ -39,7 +40,6 @@ export class ReportService {
     }
 
     if (startDate !== 'undefined' && endDate !== 'undefined') {
-      console.log(startDate, endDate);
       return this.paymentModel
         .find({
           userId,
@@ -49,6 +49,7 @@ export class ReportService {
             $gte: startDate,
             $lte: endDate,
           },
+          paymentType,
         })
         .populate('customerId')
         .exec();

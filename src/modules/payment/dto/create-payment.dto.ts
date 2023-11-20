@@ -29,4 +29,8 @@ export class CreatePaymentDto implements IPayment {
 
   @ApiProperty()
   isPaid: boolean;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  paymentType: string;
 }
