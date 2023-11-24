@@ -19,7 +19,4 @@ export class UpdateExpenseDto implements IExpense {
 
   @ApiProperty()
   isPaid: boolean;
-
-  @ApiProperty()
-  paymentType: string;
 }

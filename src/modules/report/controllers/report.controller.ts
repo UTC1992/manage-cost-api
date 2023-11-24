@@ -44,14 +44,12 @@ export class ReportController {
   expensesByUser(
     @Query('userId') userId: string,
     @Query('isPaid') isPaid: boolean,
-    @Query('paymentType') paymentType: string,
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string,
   ) {
     return this.reportService.expensesByUser(
       userId,
       isPaid,
-      paymentType,
       startDate,
       endDate,
     );
@@ -63,7 +61,7 @@ export class ReportController {
     @Query('paymentType') paymentType: string,
   ) {
     const [updateExpenses, updatePayments] = await Promise.allSettled([
-      this.reportService.updateManyExpensesIsPaid(userId, paymentType),
+      this.reportService.updateManyExpensesIsPaid(userId),
       this.reportService.updateManyPaymentsIsPaid(userId, paymentType),
     ]);
 

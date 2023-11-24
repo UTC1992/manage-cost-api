@@ -28,8 +28,4 @@ export class CreateExpenseDto implements IExpense {
 
   @ApiProperty()
   isPaid: boolean;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  paymentType: string;
 }
