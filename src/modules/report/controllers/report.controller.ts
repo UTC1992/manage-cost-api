@@ -19,12 +19,14 @@ export class ReportController {
   paymentsByUser(
     @Query('userId') userId: string,
     @Query('isPaid') isPaid: boolean,
+    @Query('paymentType') paymentType: string,
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string,
   ) {
     return this.reportService.paymentsByUser(
       userId,
       isPaid,
+      paymentType,
       startDate,
       endDate,
     );
@@ -42,22 +44,27 @@ export class ReportController {
   expensesByUser(
     @Query('userId') userId: string,
     @Query('isPaid') isPaid: boolean,
+    @Query('paymentType') paymentType: string,
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string,
   ) {
     return this.reportService.expensesByUser(
       userId,
       isPaid,
+      paymentType,
       startDate,
       endDate,
     );
   }
 
   @Patch('updateExpensesAndPaymentsToIsPaid')
-  async updateExpensesAndPaymentsToIsPaid(@Query('userId') userId: string) {
+  async updateExpensesAndPaymentsToIsPaid(
+    @Query('userId') userId: string,
+    @Query('paymentType') paymentType: string,
+  ) {
     const [updateExpenses, updatePayments] = await Promise.allSettled([
-      this.reportService.updateManyExpensesIsPaid(userId),
-      this.reportService.updateManyPaymentsIsPaid(userId),
+      this.reportService.updateManyExpensesIsPaid(userId, paymentType),
+      this.reportService.updateManyPaymentsIsPaid(userId, paymentType),
     ]);
 
     return (

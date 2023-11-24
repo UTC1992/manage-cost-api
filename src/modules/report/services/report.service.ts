@@ -56,7 +56,7 @@ export class ReportService {
     }
 
     return this.paymentModel
-      .find({ userId, isPaid, isDeleted: false })
+      .find({ userId, isPaid, isDeleted: false, paymentType })
       .populate('customerId')
       .exec();
   }
@@ -64,6 +64,7 @@ export class ReportService {
   async expensesByUser(
     userId: string,
     isPaid: boolean,
+    paymentType: string,
     startDate?: string,
     endDate?: string,
   ) {
@@ -81,24 +82,27 @@ export class ReportService {
             $gte: startDate,
             $lte: endDate,
           },
+          paymentType,
         })
         .populate('customerId')
         .exec();
     }
 
-    return this.expenseModel.find({ userId, isPaid, isDeleted: false }).exec();
+    return this.expenseModel
+      .find({ userId, isPaid, isDeleted: false, paymentType })
+      .exec();
   }
 
-  async updateManyExpensesIsPaid(userId: string) {
+  async updateManyExpensesIsPaid(userId: string, paymentType: string) {
     return this.expenseModel.updateMany(
-      { isPaid: false, userId },
+      { isPaid: false, userId, paymentType },
       { $set: { isPaid: true } },
     );
   }
 
-  async updateManyPaymentsIsPaid(userId: string) {
+  async updateManyPaymentsIsPaid(userId: string, paymentType: string) {
     return this.paymentModel.updateMany(
-      { isPaid: false, userId },
+      { isPaid: false, userId, paymentType },
       { $set: { isPaid: true } },
     );
   }
