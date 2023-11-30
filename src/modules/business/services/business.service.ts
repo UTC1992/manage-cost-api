@@ -16,7 +16,7 @@ export class BusinessService {
     const business = await this.businessModel
       .findOne({ ruc: createBusinessDto.ruc })
       .exec();
-      
+
     if (business) {
       throw new HttpException(
         'Business already exist.',
