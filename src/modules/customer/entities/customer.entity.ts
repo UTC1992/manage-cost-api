@@ -95,7 +95,7 @@ export class Customer extends Document implements ICustomer {
   isDeleted: boolean;
 
   @Prop({ required: true })
-  sectorialssss: string;
+  sectorial: string;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);
