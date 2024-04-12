@@ -59,4 +59,7 @@ export class UpdateCustomerDto implements ICustomer {
 
   @ApiProperty()
   isDeleted: boolean;
+
+  @ApiProperty()
+  sectorial: string;
 }

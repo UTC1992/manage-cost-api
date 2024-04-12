@@ -29,7 +29,6 @@ export class CreateCustomerDto implements ICustomer {
   phone: string;
 
   @ApiProperty()
-  @IsNotEmpty()
   email: string;
 
   @ApiProperty()
@@ -45,7 +44,6 @@ export class CreateCustomerDto implements ICustomer {
   typeService: number;
 
   @ApiProperty()
-  @IsNotEmpty()
   payDate: Date;
 
   @ApiProperty()
@@ -65,15 +63,12 @@ export class CreateCustomerDto implements ICustomer {
   ip: string;
 
   @ApiProperty()
-  @IsNotEmpty()
   NAP: string;
 
   @ApiProperty()
-  @IsNotEmpty()
   power: number;
 
   @ApiProperty()
-  @IsNotEmpty()
   ONU: number;
 
   @ApiProperty()
@@ -81,4 +76,7 @@ export class CreateCustomerDto implements ICustomer {
 
   @ApiProperty()
   isDeleted: boolean;
+
+  @ApiProperty()
+  sectorial: string;
 }

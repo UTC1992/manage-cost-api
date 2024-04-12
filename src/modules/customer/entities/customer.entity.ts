@@ -9,21 +9,22 @@ export interface ICustomer {
   lastName: string;
   dni: string;
   phone: string;
-  email: string;
+  email?: string;
   address: string;
   reference: string;
   createdAt?: Date;
   typeService: number;
-  payDate: Date;
+  payDate?: Date;
   routerModel: string;
   wifiName: string;
   wifiPassword: string;
   ip: string;
-  NAP: string;
-  power: number;
-  ONU: number;
+  NAP?: string;
+  power?: number;
+  ONU?: number;
   coordinates?: ICoordinates;
   isDeleted?: boolean;
+  sectorial: string;
 }
 
 export type CustomerDocument = HydratedDocument<Customer & Document>;
@@ -48,7 +49,7 @@ export class Customer extends Document implements ICustomer {
   @Prop({ required: true })
   phone: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   email: string;
 
   @Prop({ required: true })
@@ -63,7 +64,7 @@ export class Customer extends Document implements ICustomer {
   @Prop({ required: true })
   typeService: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   payDate: Date;
 
   @Prop({ required: true })
@@ -78,13 +79,13 @@ export class Customer extends Document implements ICustomer {
   @Prop({ required: true })
   ip: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   NAP: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   power: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   ONU: number;
 
   @Prop({ required: false, type: Object })
@@ -92,6 +93,9 @@ export class Customer extends Document implements ICustomer {
 
   @Prop({ required: false, default: false })
   isDeleted: boolean;
+
+  @Prop({ required: true })
+  sectorial: string;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

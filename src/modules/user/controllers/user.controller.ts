@@ -14,6 +14,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { ERole } from '../../auth/enums/role.enum';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { Public } from '../../auth/decorators/public.decorator';
 
 @ApiBearerAuth()
 @ApiTags('Users')
@@ -21,7 +22,7 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Roles(ERole.Admin)
+  @Public()
   @Post()
   create(@Body() userObject: CreateUserDto) {
     return this.userService.create(userObject);
